@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E70804AB2028DE23004D8F4E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70804AA2028DE23004D8F4E /* StringExtension.swift */; };
+		E70804AD2029E3F0004D8F4E /* HugeDigitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70804AC2029E3F0004D8F4E /* HugeDigitTest.swift */; };
+		E70804AE2029E3FC004D8F4E /* HugeInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E770E0762024C5E700FC73F7 /* HugeInt.swift */; };
+		E70804AF2029E3FF004D8F4E /* HugeDigit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E770E0742024C55300FC73F7 /* HugeDigit.swift */; };
 		E770E0642024C50900FC73F7 /* HugeInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E770E05A2024C50900FC73F7 /* HugeInt.framework */; };
 		E770E0692024C50900FC73F7 /* HugeIntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E770E0682024C50900FC73F7 /* HugeIntTests.swift */; };
 		E770E06B2024C50900FC73F7 /* HugeInt.h in Headers */ = {isa = PBXBuildFile; fileRef = E770E05D2024C50900FC73F7 /* HugeInt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E770E0752024C55300FC73F7 /* HugeDigit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E770E0742024C55300FC73F7 /* HugeDigit.swift */; };
+		E770E0772024C5E700FC73F7 /* HugeInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E770E0762024C5E700FC73F7 /* HugeInt.swift */; };
+		E7F1D99D202B2D9C00AF9609 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70804AA2028DE23004D8F4E /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +30,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E70804AA2028DE23004D8F4E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		E70804AC2029E3F0004D8F4E /* HugeDigitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HugeDigitTest.swift; sourceTree = "<group>"; };
 		E770E05A2024C50900FC73F7 /* HugeInt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HugeInt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E770E05D2024C50900FC73F7 /* HugeInt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HugeInt.h; sourceTree = "<group>"; };
 		E770E05E2024C50900FC73F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E770E0632024C50900FC73F7 /* HugeIntTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HugeIntTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E770E0682024C50900FC73F7 /* HugeIntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HugeIntTests.swift; sourceTree = "<group>"; };
 		E770E06A2024C50900FC73F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E770E0742024C55300FC73F7 /* HugeDigit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HugeDigit.swift; sourceTree = "<group>"; };
+		E770E0762024C5E700FC73F7 /* HugeInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HugeInt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E70804A92028DE1A004D8F4E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E70804AA2028DE23004D8F4E /* StringExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E770E0502024C50900FC73F7 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				E770E05D2024C50900FC73F7 /* HugeInt.h */,
+				E770E0762024C5E700FC73F7 /* HugeInt.swift */,
+				E770E0742024C55300FC73F7 /* HugeDigit.swift */,
+				E70804A92028DE1A004D8F4E /* Extensions */,
 				E770E05E2024C50900FC73F7 /* Info.plist */,
 			);
 			path = HugeInt;
@@ -81,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				E770E0682024C50900FC73F7 /* HugeIntTests.swift */,
+				E70804AC2029E3F0004D8F4E /* HugeDigitTest.swift */,
 				E770E06A2024C50900FC73F7 /* Info.plist */,
 			);
 			path = HugeIntTests;
@@ -148,6 +171,7 @@
 				TargetAttributes = {
 					E770E0592024C50900FC73F7 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					E770E0622024C50900FC73F7 = {
@@ -196,6 +220,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E770E0772024C5E700FC73F7 /* HugeInt.swift in Sources */,
+				E770E0752024C55300FC73F7 /* HugeDigit.swift in Sources */,
+				E70804AB2028DE23004D8F4E /* StringExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +230,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E70804AF2029E3FF004D8F4E /* HugeDigit.swift in Sources */,
+				E70804AD2029E3F0004D8F4E /* HugeDigitTest.swift in Sources */,
+				E7F1D99D202B2D9C00AF9609 /* StringExtension.swift in Sources */,
 				E770E0692024C50900FC73F7 /* HugeIntTests.swift in Sources */,
+				E70804AE2029E3FC004D8F4E /* HugeInt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +365,7 @@
 		E770E06F2024C50900FC73F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -347,6 +379,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = KP.HugeInt;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -355,6 +388,7 @@
 		E770E0702024C50900FC73F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -376,6 +410,7 @@
 		E770E0722024C50900FC73F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7NY8Y2DTZF;
 				INFOPLIST_FILE = HugeIntTests/Info.plist;
@@ -390,6 +425,7 @@
 		E770E0732024C50900FC73F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7NY8Y2DTZF;
 				INFOPLIST_FILE = HugeIntTests/Info.plist;
