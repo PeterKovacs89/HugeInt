@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 A simple, pure swift library to help handling of huge int values (usually in incremental games). Upper limit is only the memory of the device. Value displaying: 1 = 1, 1000 = 1a, 1000000 = 1b, etc... Supported operations: +, -, *, /, %, <<, >>. (Shifting shifts x digits which means multiplying or dividing by 1000ˆx, eg: 1a << 1 = 1b))
                    DESC
 
-  #s.homepage     = "http://EXAMPLE/HugeInt"
+  s.homepage     = "https://github.com/PeterKovacs89/HugeInt"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -79,6 +79,7 @@ LICENSE
 
   # s.platform     = :ios
   s.platform     = :ios, "9.0"
+  s.swift_version = "4.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
