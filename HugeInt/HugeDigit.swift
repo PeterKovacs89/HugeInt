@@ -8,20 +8,20 @@
 
 import Foundation
 
-struct HugeDigit {
-    var position:Int = 0    //position of the digit
-    var value:Int = 0       //value of this digit between 0 and 999
+public struct HugeDigit {
+    public var position:Int = 0    //position of the digit
+    public var value:Int = 0       //value of this digit between 0 and 999
     
     fileprivate static let characterPositionOffset = 97
     fileprivate static let characterCount = 26
     
-    init(position:Int, value:Int) {
+    public init(position:Int, value:Int) {
         
         self.value = value
         self.position = position
     }
     
-    init(withPositionString string:String, value:Int) {
+    public init(withPositionString string:String, value:Int) {
         
         assert(value >= 0, "Digits can't store negative value. Negative numbers are represented with positive digits, and a true isNegative flag.")
         
@@ -29,37 +29,37 @@ struct HugeDigit {
         self.init(position: position, value: value)
     }
     
-    static func zero() -> HugeDigit {
+    public static func zero() -> HugeDigit {
         return HugeDigit(position: 0, value: 0)
     }
 }
 
 extension HugeDigit: Equatable {
     
-    static func ==(lhs: HugeDigit, rhs: HugeDigit) -> Bool {
+    public static func ==(lhs: HugeDigit, rhs: HugeDigit) -> Bool {
         return ((lhs.position == rhs.position) && (lhs.value == rhs.value))
     }
 }
 
 extension HugeDigit: Comparable {
     
-    static func <(lhs: HugeDigit, rhs: HugeDigit) -> Bool {
+    public static func <(lhs: HugeDigit, rhs: HugeDigit) -> Bool {
         return (lhs.compare(rhs) == .orderedAscending)
     }
     
-    static func <=(lhs: HugeDigit, rhs: HugeDigit) -> Bool {
+    public static func <=(lhs: HugeDigit, rhs: HugeDigit) -> Bool {
         return (lhs.compare(rhs) != .orderedDescending)
     }
     
-    static func >=(lhs: HugeDigit, rhs: HugeDigit) -> Bool {
+    public static func >=(lhs: HugeDigit, rhs: HugeDigit) -> Bool {
         return (lhs.compare(rhs) != .orderedAscending)
     }
     
-    static func >(lhs: HugeDigit, rhs: HugeDigit) -> Bool {
+    public static func >(lhs: HugeDigit, rhs: HugeDigit) -> Bool {
         return (lhs.compare(rhs) == .orderedDescending)
     }
     
-    func compare(_ hugeDigit:HugeDigit) -> ComparisonResult {
+    public func compare(_ hugeDigit:HugeDigit) -> ComparisonResult {
         
         var result: ComparisonResult
         

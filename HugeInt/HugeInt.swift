@@ -8,10 +8,10 @@
 
 import Foundation
 
-typealias HugeIntValue = (Int, String)
-typealias HugeDoubleValue = (Double, String)
+public typealias HugeIntValue = (Int, String)
+public typealias HugeDoubleValue = (Double, String)
 
-class HugeInt
+public class HugeInt
 {
     fileprivate var digits: [Int:HugeDigit] = [Int:HugeDigit]()
     
@@ -19,9 +19,9 @@ class HugeInt
         return (self.isNegative ? -1 : 1)
     }
     
-    var isNegative: Bool = false
+    public var isNegative: Bool = false
     
-    var intValue: HugeIntValue {
+    public var intValue: HugeIntValue {
         
         let lastDigit = self.lastDigit()
         let signedValue = lastDigit.value * self.negativeScalar
@@ -29,7 +29,7 @@ class HugeInt
         return (signedValue, stringValue)
     }
     
-    var doubleValue: HugeDoubleValue {
+    public var doubleValue: HugeDoubleValue {
         
         let mainDigit = self.lastDigit()
         let subDigitValue = self.digits[mainDigit.position - 1]?.value ?? 0
@@ -40,11 +40,11 @@ class HugeInt
         return (signedValue, stringValue)
     }
     
-    var isZero: Bool {
+    public var isZero: Bool {
         return ((self.intValue.0 == 0) && (self.intValue.1 == ""))
     }
     
-    init(withDigits digits:[Int:HugeDigit], isNegative:Bool)
+    public init(withDigits digits:[Int:HugeDigit], isNegative:Bool)
     {
         self.digits = digits
         self.isNegative = isNegative
@@ -55,7 +55,7 @@ class HugeInt
         self.isNegative = hugeInt.isNegative
     }
     
-    convenience init(withIntValue value:HugeIntValue)
+    public convenience init(withIntValue value:HugeIntValue)
     {
         let isNegative = (value.0 < 0)
         let unsignedValue = abs(value.0)
@@ -65,7 +65,7 @@ class HugeInt
         self.init(withDigits: [digit.position:digit], isNegative:isNegative)
     }
     
-    convenience init(withInt intValue:Int) {
+    public convenience init(withInt intValue:Int) {
         
         let isNegative = (intValue < 0)
         let unsignedValue = abs(intValue)
@@ -90,7 +90,7 @@ class HugeInt
         self.cleanUp()
     }
     
-    convenience init(withDoubleValue value:HugeDoubleValue)
+    public convenience init(withDoubleValue value:HugeDoubleValue)
     {
         let isNegative = (value.0 < 0)
         let unsignedValue = abs(value.0)
@@ -104,7 +104,7 @@ class HugeInt
         self.init(withDigits: [mainDigit.position:mainDigit, subDigit.position:subDigit], isNegative: isNegative)
     }
     
-    static func zero() -> HugeInt {
+    public static func zero() -> HugeInt {
         return HugeInt(withInt: 0)
     }
     
@@ -139,7 +139,7 @@ class HugeInt
 //MARK: - Equatable
 extension HugeInt: Equatable {
     
-    static func ==(lhs: HugeInt, rhs: HugeInt) -> Bool {
+    public static func ==(lhs: HugeInt, rhs: HugeInt) -> Bool {
         return (lhs.compare(rhs) == .orderedSame)
     }
 }
@@ -147,23 +147,23 @@ extension HugeInt: Equatable {
 //MARK: - Comparable
 extension HugeInt: Comparable {
     
-    static func <(lhs: HugeInt, rhs: HugeInt) -> Bool {
+    public static func <(lhs: HugeInt, rhs: HugeInt) -> Bool {
         return (lhs.compare(rhs) == .orderedAscending)
     }
 
-    static func <=(lhs: HugeInt, rhs: HugeInt) -> Bool {
+    public static func <=(lhs: HugeInt, rhs: HugeInt) -> Bool {
         return (lhs.compare(rhs) != .orderedDescending)
     }
 
-    static func >=(lhs: HugeInt, rhs: HugeInt) -> Bool {
+    public static func >=(lhs: HugeInt, rhs: HugeInt) -> Bool {
         return (lhs.compare(rhs) != .orderedAscending)
     }
 
-    static func >(lhs: HugeInt, rhs: HugeInt) -> Bool {
+    public static func >(lhs: HugeInt, rhs: HugeInt) -> Bool {
         return (lhs.compare(rhs) == .orderedDescending)
     }
     
-    func compare(_ hugeInt:HugeInt) -> ComparisonResult {
+    public func compare(_ hugeInt:HugeInt) -> ComparisonResult {
         
         guard (self.isNegative == hugeInt.isNegative) else {
             return self.isNegative ? .orderedAscending : .orderedDescending
@@ -540,7 +540,7 @@ extension HugeInt {
 //MARK: - Shifting
 extension HugeInt {
     
-    func shift(by position:Int) -> HugeInt {
+    fileprivate func shift(by position:Int) -> HugeInt {
         
         var resultDigits = [Int:HugeDigit]()
         
