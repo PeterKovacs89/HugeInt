@@ -21,7 +21,7 @@ public class HugeInt
     
     public var isNegative: Bool = false
     
-    public var intValue: HugeIntValue {
+    public var hugeIntValue: HugeIntValue {
         
         let lastDigit = self.lastDigit()
         let signedValue = lastDigit.value * self.negativeScalar
@@ -29,7 +29,7 @@ public class HugeInt
         return (signedValue, stringValue)
     }
     
-    public var doubleValue: HugeDoubleValue {
+    public var hugeDoubleValue: HugeDoubleValue {
         
         let mainDigit = self.lastDigit()
         let subDigitValue = self.digits[mainDigit.position - 1]?.value ?? 0
@@ -41,10 +41,10 @@ public class HugeInt
     }
     
     public var isZero: Bool {
-        return ((self.intValue.0 == 0) && (self.intValue.1 == ""))
+        return ((self.hugeIntValue.0 == 0) && (self.hugeIntValue.1 == ""))
     }
     
-    public init(withDigits digits:[Int:HugeDigit], isNegative:Bool)
+    public init(with digits:[Int:HugeDigit], isNegative:Bool)
     {
         self.digits = digits
         self.isNegative = isNegative
@@ -55,20 +55,20 @@ public class HugeInt
         self.isNegative = hugeInt.isNegative
     }
     
-    public convenience init(withIntValue value:HugeIntValue)
+    public convenience init(with hugeIntValue:HugeIntValue)
     {
-        let isNegative = (value.0 < 0)
-        let unsignedValue = abs(value.0)
+        let isNegative = (hugeIntValue.0 < 0)
+        let unsignedValue = abs(hugeIntValue.0)
         
-        let digit = HugeDigit(withPositionString: value.1, value: unsignedValue)
+        let digit = HugeDigit(with: hugeIntValue.1, value: unsignedValue)
             
-        self.init(withDigits: [digit.position:digit], isNegative:isNegative)
+        self.init(with: [digit.position:digit], isNegative:isNegative)
     }
     
-    public convenience init(withInt intValue:Int) {
+    public convenience init(with integer:Int) {
         
-        let isNegative = (intValue < 0)
-        let unsignedValue = abs(intValue)
+        let isNegative = (integer < 0)
+        let unsignedValue = abs(integer)
         
         var tempValue = unsignedValue
         var digitPosition = 0
@@ -85,27 +85,27 @@ public class HugeInt
             digitPosition += 1
         } while (tempValue > 0)
         
-        self.init(withDigits: resultDigits, isNegative: isNegative)
+        self.init(with: resultDigits, isNegative: isNegative)
         
         self.cleanUp()
     }
     
-    public convenience init(withDoubleValue value:HugeDoubleValue)
+    public convenience init(with hugeDoubleValue:HugeDoubleValue)
     {
-        let isNegative = (value.0 < 0)
-        let unsignedValue = abs(value.0)
+        let isNegative = (hugeDoubleValue.0 < 0)
+        let unsignedValue = abs(hugeDoubleValue.0)
         
         let mainValue = Int(unsignedValue)
         let subValue = Int(unsignedValue * 1000) % 1000
         
-        let mainDigit = HugeDigit(withPositionString: value.1, value: mainValue)
+        let mainDigit = HugeDigit(with: hugeDoubleValue.1, value: mainValue)
         let subDigit = HugeDigit(position: mainDigit.position - 1, value: subValue)
         
-        self.init(withDigits: [mainDigit.position:mainDigit, subDigit.position:subDigit], isNegative: isNegative)
+        self.init(with: [mainDigit.position:mainDigit, subDigit.position:subDigit], isNegative: isNegative)
     }
     
     public static func zero() -> HugeInt {
-        return HugeInt(withInt: 0)
+        return HugeInt(with: 0)
     }
     
     fileprivate func relevantDigits(_ numberOfDigits:Int) -> [HugeDigit] {
@@ -204,7 +204,7 @@ extension HugeInt: Comparable {
     }
 }
 
-//MARK: - Convinenient methods
+//MARK: - Convenience methods
 extension HugeInt {
     
     fileprivate func lastDigit() -> HugeDigit {
@@ -332,13 +332,13 @@ extension HugeInt {
         return result
     }
     
-    // multiplication
+    // Shifting left (multiplying by 1000)
     public static func <<(left:HugeInt, right:Int) -> HugeInt {
         let result = left.shift(by: right)
         return result
     }
     
-    // division
+    // Shifting right (dividing by 1000)
     public static func >>(left:HugeInt, right:Int) -> HugeInt {
         let result = left.shift(by: -right)
         return result
@@ -441,7 +441,7 @@ extension HugeInt {
 
     fileprivate func unsignedMultiply(hugeInt:HugeInt) -> HugeInt {
         
-        let result = HugeInt(withIntValue: (0, ""))
+        let result = HugeInt.zero()
         
         hugeInt.digits.forEach{ currentDigit in
             
@@ -454,7 +454,7 @@ extension HugeInt {
     
     fileprivate func unsignedMultiply(digit:HugeDigit) -> HugeInt {
         
-        let result = HugeInt(withIntValue: (0, ""))
+        let result = HugeInt.zero()
         
         self.digits.forEach { currentDigit in
             
@@ -465,13 +465,13 @@ extension HugeInt {
             if (newValue >= 1000) {
                 let upperPositionValue = Int(Double(newValue) / 1000.0)
                 let transmission = HugeDigit(position: newPosition + 1, value:upperPositionValue)
-                let transmissionHugeInt = HugeInt(withDigits: [newPosition + 1:transmission], isNegative: false)
+                let transmissionHugeInt = HugeInt(with: [newPosition + 1:transmission], isNegative: false)
                 result.unsignedAdd(hugeInt: transmissionHugeInt)
                 newValue -= (upperPositionValue * 1000)
             }
             
             let resultHugeDigit = HugeDigit(position: newPosition, value: newValue)
-            let resultHugeInt = HugeInt(withDigits: [newPosition:resultHugeDigit], isNegative: false)
+            let resultHugeInt = HugeInt(with: [newPosition:resultHugeDigit], isNegative: false)
             result.unsignedAdd(hugeInt: resultHugeInt)
         }
         
@@ -528,8 +528,8 @@ extension HugeInt {
             resultDigits[finalPosition] = result
         }
         
-        let resultHugeInt = HugeInt(withDigits: resultDigits, isNegative: false)
-        var resultQuotient = HugeInt(withInt: leftOver)
+        let resultHugeInt = HugeInt(with: resultDigits, isNegative: false)
+        var resultQuotient = HugeInt(with: leftOver)
         
         resultQuotient = resultQuotient << resultOffset
         
@@ -554,7 +554,7 @@ extension HugeInt {
             }
         }
         
-        let result = HugeInt(withDigits: resultDigits, isNegative: self.isNegative)
+        let result = HugeInt(with: resultDigits, isNegative: self.isNegative)
         
         return result
     }

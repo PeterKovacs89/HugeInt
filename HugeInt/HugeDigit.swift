@@ -21,11 +21,11 @@ public struct HugeDigit {
         self.position = position
     }
     
-    public init(withPositionString string:String, value:Int) {
+    public init(with positionString:String, value:Int) {
         
         assert(value >= 0, "Digits can't store negative value. Negative numbers are represented with positive digits, and a true isNegative flag.")
         
-        let position = HugeDigit.position(fromString: string)
+        let position = HugeDigit.position(fromString: positionString)
         self.init(position: position, value: value)
     }
     
