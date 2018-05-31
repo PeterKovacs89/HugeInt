@@ -97,7 +97,7 @@ class HugeDigitTests: XCTestCase {
     //MARK: - Position Tests
     func compare(string:String, withPosition:Int)
     {
-        let digit = HugeDigit(withPositionString: string, value: 0)
+        let digit = HugeDigit(with: string, value: 0)
         
         XCTAssert(digit.position == withPosition, "\(string)'s position should be \(withPosition)")
     }
