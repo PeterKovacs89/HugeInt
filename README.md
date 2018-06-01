@@ -55,19 +55,23 @@ let a = HugeInt(with: 50000)
 let b = HugeInt(with: (10, "a"))
 
 var c = a + b
-print("a + b = \(c.intValue)")
+print("a + b = \(c.hugeIntValue)")
 c = a - b
-print("a - b = \(c.intValue)")
+print("a - b = \(c.hugeIntValue)")
 c = a * b
-print("a * b = \(c.intValue)")
+print("a * b = \(c.hugeIntValue)")
 c = a / b
-print("a / b = \(c.intValue)")
+print("a / b = \(c.hugeIntValue)")
 c = a % b
-print("a % b = \(c.intValue)")
+print("a % b = \(c.hugeIntValue)")
 c = a << 2
-print("a << 2 = \(c.intValue)")
+print("a << 2 = \(c.hugeIntValue)")
 c = a >> 1
-print("a >> 1 = \(c.intValue)")
+print("a >> 1 = \(c.hugeIntValue)")
+c = a.power(2)
+print("a pow 2 = \(c.hugeDoubleValue)")
+c = a.power((1,"a"))
+print("a pow 1a = \(c.hugeDoubleValue)")
 
 /**
 The result:
@@ -78,5 +82,7 @@ a / b = (5, "")     // 5
 a % b = (0, "")     // 0
 a << 2 = (50, "c")  // 50.000.000.000
 a >> 1 = (50, "")   // 50
+a pow 2 = (2.5, "c")// 25.000.000.000
+a pow 1a = (9.33, "bhf") // 9.330.000.000.....
 */
 ```

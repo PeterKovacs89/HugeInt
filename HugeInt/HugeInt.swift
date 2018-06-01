@@ -19,6 +19,9 @@ public class HugeInt
         return (self.isNegative ? -1 : 1)
     }
     
+    /**
+     
+     */
     public var isNegative: Bool = false
     
     public var hugeIntValue: HugeIntValue {
@@ -50,7 +53,7 @@ public class HugeInt
         self.isNegative = isNegative
     }
     
-    fileprivate init(withHugeInt hugeInt:HugeInt) {
+    fileprivate init(with hugeInt:HugeInt) {
         self.digits = hugeInt.digits
         self.isNegative = hugeInt.isNegative
     }
@@ -240,7 +243,7 @@ extension HugeInt {
         
         //same sign
         if left.isNegative == right.isNegative {
-            result = HugeInt(withHugeInt: left)
+            result = HugeInt(with: left)
             result.unsignedAdd(hugeInt: right)
         } else {
             
@@ -267,15 +270,15 @@ extension HugeInt {
             if !left.isNegative {
                 
                 if left >= right {
-                    result = HugeInt(withHugeInt: left)
+                    result = HugeInt(with: left)
                     result.unsignedSubtract(hugeInt: right)
                 } else {
-                    result = HugeInt(withHugeInt: right)
+                    result = HugeInt(with: right)
                     result.unsignedSubtract(hugeInt: left)
                     result.isNegative = true
                 }
             } else {
-                result = HugeInt(withHugeInt: left)
+                result = HugeInt(with: left)
                 result.isNegative = false
                 result.unsignedAdd(hugeInt: right)
                 result.isNegative = true
@@ -342,6 +345,32 @@ extension HugeInt {
     public static func >>(left:HugeInt, right:Int) -> HugeInt {
         let result = left.shift(by: -right)
         return result
+    }
+    
+    public func power(_ a:Int) -> HugeInt {
+        return self.power(HugeInt(with: a))
+    }
+    
+    public func power(_ a:HugeIntValue) -> HugeInt {
+        return self.power(HugeInt(with: a))
+    }
+    
+    public func power(_ a:HugeInt) -> HugeInt {
+        
+        guard !self.isZero else {
+            return self
+        }
+        
+        var retVal = HugeInt(with: 1)
+        let exponent = HugeInt(with:  a)
+        let step = HugeInt(with: 1)
+        
+        while !exponent.isZero {
+            retVal = retVal * self
+            exponent.unsignedSubtract(hugeInt: step)
+        }
+        
+        return retVal
     }
 }
 
@@ -429,7 +458,8 @@ extension HugeInt {
             
             self.digits[digit.position] = HugeDigit(position: digit.position, value: newValue)
         } else {
-            self.digits[digit.position] = digit
+            transmission = HugeDigit(position: digit.position + 1, value: 1)
+            self.digits[digit.position] = HugeDigit(position: digit.position, value: 1000 - digit.value)
         }
         
         return transmission

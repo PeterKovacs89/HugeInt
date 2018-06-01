@@ -735,4 +735,53 @@ class HugeIntTests: XCTestCase {
         
         XCTAssert(result.hugeIntValue.0 == 2 && result.hugeIntValue.1 == "a" && result.isNegative == false)
     }
+    
+    //Power
+    func testPowerWith2AExponent0() {
+        let hugeIntA = HugeInt(with: (2, "a"))
+        
+        let result = hugeIntA.power(0)
+        
+        XCTAssert(result.hugeIntValue.0 == 1 && result.hugeIntValue.1 == "" && result.isNegative == false)
+    }
+    
+    func testPowerWith2AExponent1() {
+        let hugeIntA = HugeInt(with: (2, "a"))
+        
+        let result = hugeIntA.power(1)
+        
+        XCTAssert(result.hugeIntValue.0 == 2 && result.hugeIntValue.1 == "a" && result.isNegative == false)
+    }
+    
+    func testPowerWith2AExponent2() {
+        let hugeIntA = HugeInt(with: (2, "a"))
+        
+        let result = hugeIntA.power(2)
+        
+        XCTAssert(result.hugeIntValue.0 == 4 && result.hugeIntValue.1 == "b" && result.isNegative == false)
+    }
+    
+    func testPowerWith2AExponent10() {
+        let hugeIntA = HugeInt(with: (2, "a"))
+        
+        let result = hugeIntA.power(10)
+        
+        XCTAssert(result.hugeIntValue.0 == 1 && result.hugeIntValue.1 == "k" && result.isNegative == false)
+    }
+    
+    func testPowerWith2Exponent1A() {
+        let hugeIntA = HugeInt(with: (2, ""))
+        
+        let result = hugeIntA.power((1, "a"))
+        
+        XCTAssert(result.hugeIntValue.0 == 10 && result.hugeIntValue.1 == "cv" && result.isNegative == false)
+    }
+    
+    func testPowerWith1Exponent1A() {
+        let hugeIntA = HugeInt(with: (1, ""))
+        
+        let result = hugeIntA.power((1, "a"))
+        
+        XCTAssert(result.hugeIntValue.0 == 1 && result.hugeIntValue.1 == "" && result.isNegative == false)
+    }
 }
