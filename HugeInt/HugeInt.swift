@@ -47,6 +47,30 @@ public class HugeInt
         return ((self.hugeIntValue.0 == 0) && (self.hugeIntValue.1 == ""))
     }
     
+    public var decimalString: String {
+        
+        guard !self.isZero else {
+            return "0"
+        }
+        
+        let lastDigit = self.lastDigit()
+        
+        var resultStrings = ["\(self.isNegative ? "-" : "")\(lastDigit.value)"]
+        
+        for position in (0 ..< lastDigit.position).reversed() {
+            
+            var nextDigits = "000"
+            
+            if let digit = self.digits[position] {
+                nextDigits = String(format: "%03d", digit.value)
+            }
+            
+            resultStrings.append(nextDigits)
+        }
+        
+        return resultStrings.joined(separator: ",")
+    }
+    
     public init(with digits:[Int:HugeDigit], isNegative:Bool)
     {
         self.digits = digits

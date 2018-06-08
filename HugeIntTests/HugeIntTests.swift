@@ -785,3 +785,40 @@ class HugeIntTests: XCTestCase {
         XCTAssert(result.hugeIntValue.0 == 1 && result.hugeIntValue.1 == "" && result.isNegative == false)
     }
 }
+
+// Decimal String
+extension HugeIntTests {
+    
+    func testDecimalStringWith1A() {
+        let hugeIntA = HugeInt(with: (1, "a"))
+        
+        let result = hugeIntA.decimalString
+        
+        XCTAssert(result == "1,000")
+    }
+    
+    func testDecimalStringWith10B() {
+        let hugeIntA = HugeInt(with: (10, "b"))
+        
+        let result = hugeIntA.decimalString
+        
+        XCTAssert(result == "10,000,000")
+    }
+    
+    func testDecimalStringWith10B1() {
+        let hugeIntA = HugeInt(with: [2:HugeDigit(position: 2, value: 10), 0:HugeDigit(position: 0, value: 1)], isNegative: false)
+        
+        let result = hugeIntA.decimalString
+        
+        XCTAssert(result == "10,000,001")
+    }
+    
+    func testDecimalStringWithMinus10B1() {
+        let hugeIntA = HugeInt(with: [2:HugeDigit(position: 2, value: 10), 0:HugeDigit(position: 0, value: 1)], isNegative: true)
+        
+        let result = hugeIntA.decimalString
+        
+        XCTAssert(result == "-10,000,001")
+    }
+    
+}
